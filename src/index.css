@@ -1,3 +1,7 @@
+body {
+  background-color: pink;
+  text-align: center;
+}
 @font-face {
   font-family: 'Slidefu';
   src: local('Slidefu'), url(./assets/fonts/Slidefu-Regular-2.ttf) format('truetype');
