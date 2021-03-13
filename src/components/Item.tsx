@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { appContext } from '../index';
+import { appContext, appSetStateContext } from '../AppState';
 
 interface Props {
   id: number;
@@ -22,12 +22,30 @@ interface Props {
     </appContext.Consumer>
   );
 }; */
-const Item: React.FC<Props> = props => {
+const Item: React.FC<Props> = ({ id, name, email }) => {
   const value = useContext(appContext);
+  const setState = useContext(appSetStateContext);
+  const addToCart = () => {
+    if (setState) {
+      setState(state => ({
+        ...state,
+        shoppingCart: {
+          items: [
+            ...state.shoppingCart.items,
+            {
+              id,
+              name,
+            },
+          ],
+        },
+      }));
+    }
+  };
   return (
     <li>
-      {value.username}-- name: {props.name}
-      email: {props.email}
+      {value.username}-- name: {name}
+      email: {email}
+      <button onClick={addToCart}>加入购物车</button>
     </li>
   );
 };
